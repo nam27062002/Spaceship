@@ -24,14 +24,16 @@ namespace _Scripts.Ship
 
         private void MovementHandle()
         {
-            transform.parent.position = Vector3.Lerp(transform.parent.position, targetPosition, moveSpeed * Time.deltaTime);
+            float step = moveSpeed * Time.deltaTime;
+            transform.parent.position = Vector3.MoveTowards(transform.parent.position, targetPosition, step);
         }
+
 
         private void LookAtHandle()
         {
             Vector3 direction = targetPosition - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.parent.eulerAngles = new Vector3(0, 0, angle + 90);
+            transform.parent.eulerAngles = new Vector3(0, 0, angle);
         }
     }   
 }

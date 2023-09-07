@@ -6,7 +6,9 @@ namespace _Scripts.Manager
     public class InputManager : Singleton<InputManager>
     {
         private Vector3 targetPosition;
-        public Vector3 TargetPosition => targetPosition;       
+        private bool isAttack;
+        public Vector3 TargetPosition => targetPosition;
+        public bool IsAttack => isAttack;
         private void Update()
         {
             GetInput();
@@ -15,6 +17,7 @@ namespace _Scripts.Manager
         private void GetInput()
         {
             if (Camera.main != null) targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            isAttack = Input.GetMouseButton(0);
         }
     }
 }
